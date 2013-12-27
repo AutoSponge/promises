@@ -7,6 +7,7 @@ An ES6 repl to compare promises implementations
 I tested this in Chrome on a Mac.  Your mileage may vary.
 
 ###Getting Started:
+- Download it or just <a href="https://rawgithub.com/AutoSponge/promises/master/repl.html" target="_blank">fire it up</a>.
 - Open the debugging console.  Otherwise, nothing interesting happens.
 - This repl was built with <a href="https://github.com/google/traceur-compiler">traceur-compiler</a>,
   and <a href="http://codemirror.net/2/">CodeMirror2</a> so you can use ES6 features now!
