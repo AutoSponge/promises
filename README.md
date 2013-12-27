@@ -19,7 +19,6 @@ I tested this in Chrome on a Mac.  Your mileage may vary.
 - There are a few global helper functions.  When used in examples, the example should have a
   comment noting the function's signature.
 - Credits for included promises libraries:
-  - @jquery:
-  - <a href="https://github.com/jquery/jquery" target="_blank">jQuery</a>
+  - @jquery: <a href="https://github.com/jquery/jquery" target="_blank">jQuery</a>
   - @jakearchibald: <a href="https://github.com/jakearchibald/ES6-Promises" target="_blank">ES6-Promises</a>
   - @kriskowal: <a href="https://github.com/kriskowal/q" target="_blank">Q</a>
