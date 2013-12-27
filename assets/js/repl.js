@@ -723,14 +723,14 @@ syncEvent( syncEvent( ES6asyncEvent( 0 ) ) );
                 title: "ES6 auto retry",
                 body: function () {
                     /*
-function persistant(fn) {
+function tenacious(fn) {
     var done, fail, promise = new Promise( resolve => done = resolve );
     return function retry(arg) {
         Promise.cast(fn(arg)).then(done.bind(null, "All done"), retry);
         return promise;
     };
 }
-var autoRetryEvent = persistant( ES6asyncEvent );
+var autoRetryEvent = tenacious( ES6asyncEvent );
 autoRetryEvent( 1 ).then( n => console.log( n ) );
                     */
                 }
