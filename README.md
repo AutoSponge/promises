@@ -22,3 +22,4 @@ I tested this in Chrome on a Mac.  Your mileage may vary.
   - @jquery: <a href="https://github.com/jquery/jquery" target="_blank">jQuery</a>
   - @jakearchibald: <a href="https://github.com/jakearchibald/ES6-Promises" target="_blank">ES6-Promises</a>
   - @kriskowal: <a href="https://github.com/kriskowal/q" target="_blank">Q</a>
+  - @cujojs: <a href="https://github.com/cujojs/when" target="_blank">when</a>
