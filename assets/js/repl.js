@@ -212,9 +212,6 @@
 }(this));
 
 (function () {
-    //even though it would be cool, resist the tempation to use _part_ here
-    //so it doesn't leak into the repl
-
     var examples = document.getElementById("examples");
     var lists = ["jQueryExamples", "QExamples", "ES6Examples"];
     var elms = {};
@@ -720,6 +717,21 @@ function fixedES6asyncEvent(n) {
 var delay = fn => n => Promise.cast( n ).then( fn );
 var syncEvent = delay( ES6asyncEvent );
 syncEvent( syncEvent( ES6asyncEvent( 0 ) ) );
+                    */
+                }
+            }, {
+                title: "ES6 auto retry",
+                body: function () {
+                    /*
+function persistant(fn) {
+    var done, fail, promise = new Promise( resolve => done = resolve );
+    return function retry(arg) {
+        Promise.cast(fn(arg)).then(done.bind(null, "All done"), retry);
+        return promise;
+    };
+}
+var autoRetryEvent = persistant( ES6asyncEvent );
+autoRetryEvent( 1 ).then( n => console.log( n ) );
                     */
                 }
             }, {
