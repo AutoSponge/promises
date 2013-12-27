@@ -209,6 +209,10 @@
         }
     });
 
+    $(function () {
+        $("#run").on("click", debouncedCompile);
+    });
+
 }(this));
 
 (function () {
