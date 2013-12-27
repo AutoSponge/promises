@@ -691,6 +691,7 @@ Promise.race( [
                 title: "ES6 chain (fail fast)",
                 body: function () {
                     /*
+//ES6asyncEvent(n {Any}, succeed {Boolean})
 function fixedES6asyncEvent(n) {
     return ES6asyncEvent( n, true );
 }
@@ -706,6 +707,58 @@ function fixedES6asyncEvent(n) {
         n => console.log( "%c Some failed " + n, "background: red; color: white" )
     );
 
+                    */
+                }
+            }, {
+                title: "ES6 compose chain",
+                body: function () {
+                    /*
+//ES6asyncEvent(n {Any}, succeed {Boolean})
+function fixedES6asyncEvent(n) {
+    return ES6asyncEvent( n, true );
+}
+var delay = fn => n => Promise.cast( n ).then( fn );
+var syncEvent = delay( ES6asyncEvent );
+syncEvent( syncEvent( ES6asyncEvent( 0 ) ) );
+                    */
+                }
+            }, {
+                title: "ES6 _part_ chain",
+                body: function () {
+                    /*
+function fixedES6asyncEvent(n) {
+    return ES6asyncEvent( n, true );
+}
+_part_._borrow( this )( Array.prototype, "reduce" );
+var chain = reduce_( (chain, next) => Promise.cast( chain ).then( next ) );
+//ES6asyncEvent(n {Any}, succeed {Boolean})
+chain( [
+    ES6asyncEvent,
+    ES6asyncEvent,
+    ES6asyncEvent
+], 0 ).then(
+    n => console.log( "%c All done " + n, "background: blue; color: white" ),
+    n => console.log( "%c Some failed " + n, "background: red; color: white" )
+);
+                    */
+                }
+            }, {
+                title: "ES6 _part_ handleEach",
+                body: function () {
+                    /*
+_part_._borrow( this )( Array.prototype, "map" );
+_part_._borrow( this )( Promise.prototype, "then" );
+var handleIt = then_(
+    n => console.log( "%c cool " + n, "background: orange; color: white" ),
+    n => console.log( "%c woops " + n, "background: black; color: white" )
+);
+var handleEach = map_( handleIt );
+//ES6asyncEvent(n {Any}, succeed {Boolean})
+handleEach( [
+    ES6asyncEvent( 1 ),
+    ES6asyncEvent( 2 ),
+    ES6asyncEvent( 3 )
+] );
                     */
                 }
             }
