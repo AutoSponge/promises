@@ -612,7 +612,6 @@ Q.allSettled( [
                 title: "ES6 basic async function",
                 body: function () {
                     /*
-var log = msg => () => console.log( msg );
 function asyncEvent() {
     return new Promise( function(resolve, reject) {
         var timer = Math.floor( 400 + Math.random() * 2000 );
@@ -630,7 +629,6 @@ asyncEvent()
                 title: "ES6 progressing function",
                 body: function () {
                     /*
-var log = msg => () => console.log( msg );
 function asyncEvent() {
     var pending = true,
         progress = null,
