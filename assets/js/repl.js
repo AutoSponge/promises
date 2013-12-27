@@ -217,7 +217,7 @@
 
 (function () {
     var examples = document.getElementById("examples");
-    var lists = ["jQueryExamples", "QExamples", "ES6Examples"];
+    var lists = ["jQueryExamples", "QExamples", "WhenExamples", "ES6Examples"];
     var elms = {};
     var cache = {};
     var config = {
@@ -608,6 +608,176 @@ Q.allSettled( [
                 }
             }
         ],
+        WhenExamples: [
+            {
+                title: "When basic async function",
+                body: function () {
+                    /*
+function asyncEvent() {
+    var defer = when.defer();
+        timer = Math.floor( 400 + Math.random() * 2000 );
+    setTimeout( defer[timer % 2 ? "resolve" : "reject"], timer );
+    return defer.promise;
+}
+
+asyncEvent()
+    //fulfilled
+    .then( function() {
+        console.log( "%c done ", "background: blue; color: white" );
+    //rejected
+    }, function() {
+        console.log( "%c fail ", "background: red; color: white" );
+    } );
+                     */
+                }
+            },  {
+                title: "When progressing function",
+                body: function () {
+                    /*
+function asyncEvent() {
+    var defer = when.defer();
+        timer = Math.floor( 400 + Math.random() * 2000 );
+    setTimeout( defer[timer % 2 ? "resolve" : "reject"], timer );
+    setTimeout( function working() {
+        if ( defer.promise.inspect().state === "pending" ) {
+            defer.notify( "pending... " );
+            setTimeout( working, 500 );
+        }
+    }, 1 );
+    return defer.promise;
+}
+
+asyncEvent()
+    //fulfilled
+    .then( function() {
+        console.log( "%c done ", "background: blue; color: white" );
+    //rejected
+    }, function() {
+        console.log( "%c fail ", "background: red; color: white" );
+    //progress
+    }, function() {
+        console.log( "%c pending...", "background: green; color: white" );
+    });
+                     */
+                }
+            }, {
+                title: "When all (fail fast)",
+                body: function () {
+                    /*
+//whenAsyncEvent(n {Any}, succeed {Boolean})
+when.all( [whenAsyncEvent(1), whenAsyncEvent(2), whenAsyncEvent(3)] )
+    .then( function() {
+        console.log( "%c All done ", "background: blue; color: white" );
+    }, function() {
+        console.log( "%c Some fail ", "background: red; color: white" );
+    } );
+                     */
+                }
+            }, {
+                title: "When all with parallel",
+                body: function () {
+                    /*
+//whenAsyncEvent(n {Any}, succeed {Boolean})
+function fixedWhenAsyncEvent(n) {
+    return whenAsyncEvent( n, true );
+}
+when.parallel( [
+    whenAsyncEvent,
+    whenAsyncEvent,
+    whenAsyncEvent,
+], 0 ).then( function (arr) {
+    console.log( "%c Some done " + JSON.stringify( arr ), "background: blue; color: white" );
+}, function(n) {
+    console.log( "%c Some fail " + n, "background: red; color: white" );
+} );
+                     */
+                }
+            }, {
+                title: "When settle (don't fail)",
+                body: function () {
+                    /*
+//whenAsyncEvent(n {Any}, succeed {Boolean})
+when.settle( [
+    whenAsyncEvent( 1 ),
+    whenAsyncEvent( 2 ),
+    whenAsyncEvent( 3 ),
+] ).then( function (arr) {
+    console.log( "%c All settled " + JSON.stringify( arr ), "background: blue; color: white" );
+} );
+                     */
+                }
+            }, {
+                title: "When race (fail slow)",
+                body: function () {
+                    /*
+//whenAsyncEvent(n {Any}, succeed {Boolean})
+when.any( [
+    whenAsyncEvent( 1 ),
+    whenAsyncEvent( 2 ),
+    whenAsyncEvent( 3 ),
+] ).then( function (n) {
+    console.log( "%c Some done " + n, "background: blue; color: white" );
+}, function(arr) {
+    console.log( "%c Some fail " + JSON.stringify( arr ), "background: red; color: white" );
+} );
+                     */
+                }
+            }, {
+                title: "When race with some",
+                body: function () {
+                    /*
+//whenAsyncEvent(n {Any}, succeed {Boolean})
+when.some( [
+    whenAsyncEvent( 1 ),
+    whenAsyncEvent( 2 ),
+    whenAsyncEvent( 3 ),
+], 2 ).then( function (arr) {
+    console.log( "%c Some done " + JSON.stringify( arr ), "background: blue; color: white" );
+}, function(arr) {
+    console.log( "%c Some fail " + JSON.stringify( arr ), "background: red; color: white" );
+} );
+                     */
+                }
+            }, {
+                title: "When chain (fail fast)",
+                body: function () {
+                    /*
+//whenAsyncEvent(n {Any}, succeed {Boolean})
+function fixedWhenAsyncEvent(n) {
+    return whenAsyncEvent( n, true );
+}
+when.sequence( [
+    whenAsyncEvent,
+    whenAsyncEvent,
+    whenAsyncEvent,
+], 0 ).then( function (n) {
+    console.log( "%c Some done " + n, "background: blue; color: white" );
+}, function(n) {
+    console.log( "%c Some fail " + n, "background: red; color: white" );
+} );
+                     */
+                }
+            }, {
+                title: "When pipeline (fail fast)",
+                body: function () {
+                    /*
+//whenAsyncEvent(n {Any}, succeed {Boolean})
+function fixedWhenAsyncEvent(n) {
+    return whenAsyncEvent( n, true );
+}
+when.pipeline( [
+    whenAsyncEvent,
+    whenAsyncEvent,
+    whenAsyncEvent,
+], 0 ).then( function (n) {
+    console.log( "%c Some done " + n, "background: blue; color: white" );
+}, function(n) {
+    console.log( "%c Some fail " + n, "background: red; color: white" );
+} );
+                     */
+                }
+            }
+        ],
         ES6Examples: [
             {
                 title: "ES6 basic async function",
@@ -782,6 +952,23 @@ handleEach( [
     };
 
     //build lists
+/*
+    <li class="dropdown-submenu">
+        <a tabindex="-1" href="#">More options</a>
+        <ul class="dropdown-menu">
+            <li><a tabindex="-1" href="#">Second level</a></li>
+            <li class="dropdown-submenu">
+                <a href="#">More..</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">3rd level</a></li>
+                    <li><a href="#">3rd level</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Second level</a></li>
+            <li><a href="#">Second level</a></li>
+        </ul>
+    </li>
+*/
     lists.forEach(function (name) {
         elms[name] = document.getElementById( name );
     });
@@ -886,4 +1073,26 @@ function ES6asyncEvent(n, succeed) {
             }
         }, timer );
     });
+}
+function whenAsyncEvent(n, succeed) {
+    var timer = getTimer(),
+        defer = when.defer();
+    setTimeout( function () {
+        switch ( succeed ) {
+            case true:
+                defer.resolve( n );
+                break;
+            case false:
+                defer.reject( n );
+                break;
+            default:
+                defer[timer % 2 ? "resolve" : "reject"]( n );
+        }
+    }, timer );
+    defer.promise.then(function(n) {
+        console.log( "done " + n );
+    }, function() {
+        console.log( "fail " + n );
+    });
+    return defer.promise;
 }
