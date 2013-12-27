@@ -728,9 +728,9 @@ syncEvent( syncEvent( ES6asyncEvent( 0 ) ) );
                 body: function () {
                     /*
 function tenacious(fn) {
-    var done, fail, promise = new Promise( resolve => done = resolve );
+    var done, promise = new Promise( resolve => done = resolve );
     return function retry(arg) {
-        Promise.cast(fn(arg)).then(done.bind(null, "All done"), retry);
+        Promise.cast( fn( arg ) ).then( done.bind( null, "All done" ), retry );
         return promise;
     };
 }
