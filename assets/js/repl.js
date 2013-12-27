@@ -277,7 +277,7 @@ asyncEvent()
                      */
                 }
             }, {
-                title: "jQuery all",
+                title: "jQuery all (fail fast)",
                 body: function () {
                     /*
 //$asyncEvent(n {Any}, succeed {Boolean})

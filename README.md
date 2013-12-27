@@ -16,6 +16,8 @@ I tested this in Chrome on a Mac.  Your mileage may vary.
   execute every time you press <code>ESC</code> or <code>ENTER</code> in the text area.
 - Click the <a href="#">Promises</a> link in the top left to reset
   (page refresh will just redisplay the last code you edited).
+- There are a few global helper functions.  When used in examples, the example should haave a
+  comment noting the function's signature.
 - Credits for included promises libraries:
   - @jquery:
   - <a href="https://github.com/jquery/jquery" target="_blank">jQuery</a>
