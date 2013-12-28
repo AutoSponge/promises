@@ -905,12 +905,12 @@ function *serial(list) {
   var n,
       chain = Promise.resolve(),
       next;
-  while (list.length) {
+  while ( list.length ) {
     n = yield n;
-    if (typeof n === "undefined") {
+    if ( typeof n === "undefined" ) {
       	next = list.shift();
     } else {
-	    next = list.shift().bind(null, n);
+	    next = list.shift().bind( null, n );
     }
 	chain = chain.then( next, next );
   }
