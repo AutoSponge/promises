@@ -894,6 +894,35 @@ syncEvent( syncEvent( ES6asyncEvent( 0 ) ) );
                     */
                 }
             }, {
+                title: "ES6 generator chain",
+                body: function () {
+                    /*
+//ES6asyncEvent(n {Any}, succeed {Boolean})
+function fixedES6asyncEvent(n) {
+    return ES6asyncEvent( n, true );
+}
+function *serial(list) {
+  var n,
+      chain = Promise.resolve(),
+      next;
+  while (list.length) {
+    n = yield n;
+    if (typeof n === "undefined") {
+      	next = list.shift();
+    } else {
+	    next = list.shift().bind(null, n);
+    }
+	chain = chain.then( next, next );
+  }
+}
+var chain = serial( [ES6asyncEvent, ES6asyncEvent, ES6asyncEvent] );
+chain.next();
+chain.next( 1 );
+chain.next();
+chain.next( 2 );
+                     */
+                }
+            },{
                 title: "ES6 auto retry",
                 body: function () {
                     /*
@@ -909,6 +938,28 @@ autoRetryEvent( 1 ).then( n => console.log( n ) );
                     */
                 }
             }, {
+                title: "ES6 throttle",
+                body: function () {
+                    /*
+var gateway = (function () {
+    var gate = {};
+    return function (fn, key) {
+        var lock = key || "default",
+            unlock = () => gate[lock] = null;
+        gate[lock] = !gate[lock] ? Promise.cast( fn() ) : gate[lock].then( fn, fn );
+        return gate[lock].then( unlock, unlock );
+    };
+}());
+var log = (n) => () => console.log(n);
+gateway(ES6asyncEvent.bind(null, 1))
+  .then(log(2));
+gateway(ES6asyncEvent.bind(null, 3))
+  .then(log(4));
+gateway(ES6asyncEvent.bind(null, 5))
+  .then(log(6));
+                     */
+                }
+            },{
                 title: "ES6 _part_ chain",
                 body: function () {
                     /*
