@@ -938,6 +938,23 @@ autoRetryEvent( 1 ).then( n => console.log( n ) );
                     */
                 }
             }, {
+                title: "ES6 auto retry generator",
+                body: function () {
+                    /*
+function *asyncEvent(max) {
+  	var n = 0;
+  	while ( n < max ) {
+    	yield ES6asyncEvent( n );
+      	n += 1;
+  	}
+}
+function optimist( chain ) {
+  	chain.next().value.then( chain.close, () => optimist( chain ) );
+}
+optimist( asyncEvent(3) ); // only try 3 times
+                     */
+                }
+            },{
                 title: "ES6 throttle",
                 body: function () {
                     /*
