@@ -941,6 +941,7 @@ autoRetryEvent( 1 ).then( n => console.log( n ) );
                 title: "ES6 auto retry generator",
                 body: function () {
                     /*
+//ES6asyncEvent(n {Any}, succeed {Boolean})
 function *asyncEvent(max) {
   	var n = 0;
   	while ( n < max ) {
@@ -948,10 +949,24 @@ function *asyncEvent(max) {
       	n += 1;
   	}
 }
-function optimist( chain ) {
-  	chain.next().value.then( chain.close, () => optimist( chain ) );
-}
-optimist( asyncEvent(3) ); // only try 3 times
+var optimist = (function () {
+	var done, fail,
+        promise = new Promise( (resolve, reject) => {
+          done = resolve;
+          fail = reject;
+        } ),
+        chain = promise;
+    return function continued( chain ) {
+        var next = chain.next();
+        next.done ? fail() :
+        	next.value.then( done, () => continued( chain ) );
+      	return promise;
+    };
+}());
+optimist( asyncEvent( 3 ) ).then( // only try 3 times
+  n => console.log( "%c Some done " + n, "background: blue; color: white" ),
+  n => console.log( "%c All failed ", "background: red; color: white" )
+);
                      */
                 }
             },{
