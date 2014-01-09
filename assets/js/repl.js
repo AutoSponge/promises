@@ -922,6 +922,45 @@ chain.next();
 chain.next( 2 );
                      */
                 }
+            }, {
+                title: "ES6 lazy chain",
+                body: function () {
+                    /*
+//ES6asyncEvent(n {Any}, succeed {Boolean})
+function fixedES6asyncEvent(n) {
+    return ES6asyncEvent( n, true );
+}
+
+var stateObj = {};
+
+function recur( state ) {
+    if ( !state ) {
+        console.log( "no state passed, continue" );
+        return recur( {} );
+    }
+    if ( !state.count ) {
+
+        state.count = 0;
+    }
+    state.count += 1;
+    console.log( "%c state: " + state.count, "background: yellow" );
+    if ( state.count < 4 ) {
+        return new Promise( function (resolve, reject) {
+            return ES6asyncEvent( state.count )
+                .then( resolve.bind( null, state ), reject.bind( null, state ) );
+        } )
+            .then( recur );
+    }
+    return state;
+}
+
+recur()
+    .then( state => console.log( "%c done, final state: " + JSON.stringify( state ),
+        "background: blue; color: white" ) )
+    .catch( state => console.log( "%c woops! Final state :" + JSON.stringify( state ),
+        "background: red; color: white" ) );
+                     */
+                }
             },{
                 title: "ES6 auto retry",
                 body: function () {
