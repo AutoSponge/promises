@@ -931,8 +931,6 @@ function fixedES6asyncEvent(n) {
     return ES6asyncEvent( n, true );
 }
 
-var stateObj = {};
-
 function recur( state ) {
     if ( !state ) {
         console.log( "no state passed, continue" );
@@ -942,9 +940,9 @@ function recur( state ) {
 
         state.count = 0;
     }
-    state.count += 1;
-    console.log( "%c state: " + state.count, "background: yellow" );
     if ( state.count < 4 ) {
+        state.count += 1;
+        console.log( "%c state: " + state.count, "background: yellow" );
         return new Promise( function (resolve, reject) {
             return ES6asyncEvent( state.count )
                 .then( resolve.bind( null, state ), reject.bind( null, state ) );
