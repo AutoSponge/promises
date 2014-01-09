@@ -943,7 +943,7 @@ function recur( state ) {
         state.count = 0;
     }
     state.count += 1;
-    console.log( "state: " + state.count );
+    console.log( "%c state: " + state.count, "background: yellow" );
     if ( state.count < 4 ) {
         return new Promise( function (resolve, reject) {
             return ES6asyncEvent( state.count )
@@ -955,8 +955,10 @@ function recur( state ) {
 }
 
 recur()
-    .then( state => console.log( "done, final state: " + JSON.stringify( state ) ) )
-    .catch( state => console.log( "woops! Final state :" + JSON.stringify( state ) ) );
+    .then( state => console.log( "%c done, final state: " + JSON.stringify( state ),
+        "background: blue; color: white" ) )
+    .catch( state => console.log( "%c woops! Final state :" + JSON.stringify( state ),
+        "background: red; color: white" ) );
                      */
                 }
             },{
