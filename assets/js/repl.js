@@ -87,6 +87,7 @@
     }
 
     function compile() {
+        console.log("%c ******* evaluating... ******* ", "background: green; color: white");
         hasError = false;
         errorElement.textContent = sourceMapElement.textContent = '';
 
